@@ -17,7 +17,12 @@ const getContent = (block) => {
 };
 
 const addLink = (config, block) => {
-  const language = Array.from(block.classList).find(className => config.languages.hasOwnProperty(className));
+  const classPrefix = 'language-';
+
+  const language = Array.from(block.classList)
+    .filter(className => className.startsWith(classPrefix))
+    .map(className => className.substring(classPrefix.length))
+    .find(className => config.languages.hasOwnProperty(className));
 
   if (language === undefined) {
     return;
