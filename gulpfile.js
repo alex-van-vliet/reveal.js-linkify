@@ -60,7 +60,7 @@ const banner = `/*!
 * ${pkg.homepage}
 * GNU GPLv3 Licensed
 *
-* Copyright (C) 2023, https://alexvanvliet.pro
+* Copyright (C) 2023, ${pkg.author}
 */\n`;
 
 
