@@ -15,7 +15,7 @@ const addLink = (config, block) => {
 
   const code = block.textContent;
 
-  const link = config.languages[language].link(code);
+  const link = config.languages[language].link(config, code);
 
   console.log(link);
 };
