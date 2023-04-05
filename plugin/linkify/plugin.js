@@ -1,8 +1,18 @@
+import merge from 'lodash/merge';
+
+import languages from './languages';
+
+const defaultConfig = {
+  languages,
+};
+
 const Plugin = () => {
   return {
     id: 'linkify',
     init(deck) {
-      console.log('Hello, World!');
+      const config = merge({}, defaultConfig, deck.getConfig().linkify || {});
+
+      console.log(config);
     },
   };
 };
