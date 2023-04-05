@@ -1,54 +1,44 @@
-import { encode } from '../helpers/base64';
-
 export default {
-  compiler: 'js_trunk',
-  options: '',
-  execute: true,
-  libs: [],
-
-  compilers(config) {
-    return [
-      {
-        id: this.compiler,
-        libs: this.libs,
-        options: this.options,
-        filters: {
-          execute: this.execute,
-        },
-      },
-    ];
+  editors: {
+    html: false,
+    css: false,
+    javascript: true,
   },
+  layout: 'left',
 
   state(config, source) {
     return {
-      sessions: [
-        {
-          id: 1,
-          language: 'javascript',
-          source: source,
-          compilers: this.compilers(),
-          executors: [],
-        },
-      ],
+      js: source,
+      editors: (this.editors.html ? '1' : '0') + (this.editors.css ? '1' : '0') + (this.editors.javascript ? '1' : '0'),
+      layout: this.layout,
     };
   },
 
-  link(config, source) {
-    const state = encodeURIComponent(encode(JSON.stringify(this.state(config, source))));
-
-    return `https://godbolt.org/clientstate/${state}`;
-  },
-
   element(config, source) {
-    const link = this.link(config, source);
+    const inputElement = document.createElement('input');
+    inputElement.type = 'hidden';
+    inputElement.name = 'data';
+    inputElement.value = JSON.stringify(this.state(config, source));
 
     const linkElement = document.createElement('a');
 
-    linkElement.href = link;
-    linkElement.target = '_blank';
+    linkElement.href = '#';
+    linkElement.onclick = e => {
+      e.preventDefault();
+
+      formElement.submit();
+    };
     linkElement.textContent = config.text;
     linkElement.classList.add(config.class);
 
-    return linkElement;
+    const formElement = document.createElement('form');
+
+    formElement.action = 'https://codepen.io/pen/define';
+    formElement.method = 'POST';
+    formElement.target = '_blank';
+
+    formElement.appendChild(inputElement);
+
+    return [linkElement, formElement];
   },
 };

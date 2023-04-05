@@ -30,7 +30,13 @@ const addLink = (config, block) => {
 
   const code = getContent(block);
 
-  block.after(config.languages[language].element(config, code));
+  const element = config.languages[language].element(config, code);
+
+  if (Array.isArray(element)) {
+    element.reverse().forEach(el => block.after(el));
+  } else {
+    block.after(element);
+  }
 };
 
 const Plugin = () => {
