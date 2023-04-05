@@ -30,16 +30,7 @@ const addLink = (config, block) => {
 
   const code = getContent(block);
 
-  const link = config.languages[language].link(config, code);
-
-  const linkElement = document.createElement('a');
-
-  linkElement.href = link;
-  linkElement.target = '_blank';
-  linkElement.textContent = config.text;
-  linkElement.classList.add(config.class);
-
-  block.after(linkElement);
+  block.after(config.languages[language].element(config, code));
 };
 
 const Plugin = () => {

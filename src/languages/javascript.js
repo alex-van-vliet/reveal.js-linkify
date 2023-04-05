@@ -38,4 +38,17 @@ export default {
 
     return `https://godbolt.org/clientstate/${state}`;
   },
+
+  element(config, source) {
+    const link = this.link(config, source);
+
+    const linkElement = document.createElement('a');
+
+    linkElement.href = link;
+    linkElement.target = '_blank';
+    linkElement.textContent = config.text;
+    linkElement.classList.add(config.class);
+
+    return linkElement;
+  },
 };
