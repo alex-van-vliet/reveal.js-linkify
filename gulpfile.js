@@ -6,6 +6,7 @@ const pkg = require('./package.json');
 
 const { rollup } = require('rollup');
 const { terser } = require('rollup-plugin-terser');
+const copy = require('rollup-plugin-copy');
 const babel = require('@rollup/plugin-babel').default;
 const commonjs = require('@rollup/plugin-commonjs');
 const resolve = require('@rollup/plugin-node-resolve').default;
@@ -16,8 +17,9 @@ const gulp = require('gulp');
 process.setMaxListeners(20);
 
 const name = 'Linkify';
-const input = './plugin/linkify/plugin.js';
-const output = './plugin/linkify/linkify';
+const styles = './styles/*';
+const input = './src/plugin.js';
+const output = './plugin/linkify';
 
 const babelConfig = {
   babelHelpers: 'bundled',
@@ -72,18 +74,19 @@ gulp.task('build', () => {
       commonjs(),
       babel(babelConfig),
       terser(),
+      copy({ targets: [{ src: styles, dest: output }] }),
     ],
   }).then(bundle => {
     cache[input] = bundle.cache;
     bundle.write({
-      file: output + '.esm.js',
+      file: `${output}/${name.toLowerCase()}.esm.js`,
       name: name,
       format: 'es',
       banner: banner,
     });
 
     bundle.write({
-      file: output + '.js',
+      file: `${output}/${name.toLowerCase()}.js`,
       name: name,
       format: 'umd',
       banner: banner,
