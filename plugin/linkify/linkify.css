@@ -1,0 +1,12 @@
+.reveal pre code {
+    position: relative;
+}
+
+.reveal pre code + .linkify-link {
+    position: absolute;
+
+    bottom: 0;
+    right: 0;
+
+    padding: .5em;
+}
