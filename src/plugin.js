@@ -8,6 +8,14 @@ const defaultConfig = {
   class: 'linkify-link',
 };
 
+const getContent = (block) => {
+  if ((block.children.length > 0) && Array.from(block.children[0].classList).includes('hljs-ln')) {
+    return Array.from(block.querySelectorAll('.hljs-ln-code')).map((el) => el.textContent).join('\n');
+  } else {
+    return block.textContent;
+  }
+};
+
 const addLink = (config, block) => {
   const language = Array.from(block.classList).find(className => config.languages.hasOwnProperty(className));
 
@@ -15,7 +23,7 @@ const addLink = (config, block) => {
     return;
   }
 
-  const code = block.textContent;
+  const code = getContent(block);
 
   const link = config.languages[language].link(config, code);
 
