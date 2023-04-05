@@ -4,6 +4,8 @@ import languages from './languages';
 
 const defaultConfig = {
   languages,
+  text: 'Run Online!',
+  class: 'linkify-link',
 };
 
 const addLink = (config, block) => {
@@ -17,7 +19,14 @@ const addLink = (config, block) => {
 
   const link = config.languages[language].link(config, code);
 
-  console.log(link);
+  const linkElement = document.createElement('a');
+
+  linkElement.href = link;
+  linkElement.target = '_blank';
+  linkElement.textContent = config.text;
+  linkElement.classList.add(config.class);
+
+  block.after(linkElement);
 };
 
 const Plugin = () => {
