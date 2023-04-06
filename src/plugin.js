@@ -16,17 +16,31 @@ const getContent = (block) => {
   }
 };
 
-const addLink = (config, block) => {
+const getLanguage = (config, classes) => {
   const classPrefix = 'language-';
 
-  const language = Array.from(block.classList)
+  const prefixedLanguage = classes
     .filter(className => className.startsWith(classPrefix))
     .map(className => className.substring(classPrefix.length))
     .find(className => config.languages.hasOwnProperty(className));
 
-  if (language === undefined) {
-    return;
+  if (prefixedLanguage) {
+    return prefixedLanguage;
   }
+
+  const language = classes
+    .find(className => config.languages.hasOwnProperty(className));
+
+  if (language) {
+    return language;
+  }
+};
+
+const addLink = (config, block) => {
+  const language = getLanguage(config, Array.from(block.classList));
+
+  if (!language)
+    return;
 
   const code = getContent(block);
 
