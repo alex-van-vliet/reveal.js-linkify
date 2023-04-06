@@ -14,11 +14,11 @@ console.log("Hello, world!");
 
 When using Markdown, the language can be specified as usual:
 
-```markdown
-\```js
+````markdown
+```js
 console.log("Hello, world!");
-\```
 ```
+````
 
 The language can also be determined automatically with the code highlight plugin!
 
