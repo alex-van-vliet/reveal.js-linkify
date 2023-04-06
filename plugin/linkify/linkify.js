@@ -1,5 +1,5 @@
 /*!
-* reveal.js-linkify 0.0.1
+* reveal.js-linkify 1.0.0
 * https://github.com/alex-van-vliet/reveal.js-linkify
 * GNU GPLv3 Licensed
 *
