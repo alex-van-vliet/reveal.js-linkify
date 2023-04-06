@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+        <title>reveal.js-linkify</title>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/reset.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/reveal.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/theme/black.css">
+
+        <!-- Theme used for syntax highlighted code -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/plugin/highlight/monokai.css">
+        <!-- Linkify CSS -->
+        <link rel="stylesheet" href="plugin/linkify/linkify.css">
+
+        <!-- Place this tag in your head or just before your close body tag. -->
+        <script async defer src="https://buttons.github.io/buttons.js"></script>
+    </head>
+    <body>
+        <div class="reveal">
+            <div class="slides">
+                <section>
+                    <h2>Linkify</h2>
+                    <p>A Reveal.js plugin to automatically create links to online compilers</p>
+                    <pre><code data-trim data-noescape>
+                        #include &lt;iostream&gt;
+
+                        int main() {
+                            std::cout << "Hello, world!\n";
+                        }
+                    </code></pre>
+                    <pre><code data-trim data-noescape class="javascript">
+                        console.log("Hello, world!");
+                    </code></pre>
+                    <small>Now available for C++ (using Godbolt) and for JavaScript (on Codepen)!</small>
+                </section>
+                <section>
+                    <h4>From HTML</h4>
+                    <pre><code data-trim data-noescape>
+                        #include &lt;iostream&gt;
+
+                        int main() {
+                            std::cout << "Hello, world from html!\n";
+                        }
+                    </code></pre>
+                </section>
+                <section data-markdown>
+                    #### From Markdown
+
+                    ```cpp
+                    #include &lt;iostream&gt;
+
+                    int main() {
+                        std::cout << "Hello, world from markdown!\n";
+                    }
+                    ```
+                </section>
+                <section data-markdown>
+                    #### With Line Numbers
+
+                    ```cpp [4-6|7-11]
+                    #include &lt;iostream&gt;
+
+                    int main() {
+                        std::cout << "Input a number: ";
+                        int i;
+                        std::cin >> i;
+                        if (i >= 0) {
+                            std::cout << "Your number is non-negative!\n";
+                        } else {
+                            std::cout << "Your number is negative!\n";
+                        }
+                    }
+                    ```
+                </section>
+                <section data-markdown>
+                    #### Easy to Setup and Configure
+
+                    ```js
+                    Reveal.initialize({
+                        // ...
+                        linkify: {
+                            // Linkify Configuration
+                        },
+                        plugins: [ /* ..., */ Linkify ]
+                    });
+                    ```
+                </section>
+                <section>
+                    <h4>Links</h4>
+
+                    <p>
+                        <a href="https://github.com/alex-van-vliet/reveal.js-linkify">Source & Documentation</a>
+                    </p>
+
+                    <small>Thanks for using Linkify!</small>
+                </section>
+            </div>
+        </div>
+
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/reveal.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/plugin/notes/notes.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/plugin/markdown/markdown.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.4.0/plugin/highlight/highlight.js"></script>
+        <script src="plugin/linkify/linkify.js"></script>
+        <script>
+        // More info about initialization & config:
+        // - https://revealjs.com/initialization/
+        // - https://revealjs.com/config/
+        Reveal.initialize({
+          hash: true,
+
+          linkify: {
+            // Use default configuration
+          },
+
+          // Learn about plugins: https://revealjs.com/plugins/
+          plugins: [ RevealMarkdown, RevealHighlight, RevealNotes, Linkify ]
+        });
+        </script>
+    </body>
+</html>
