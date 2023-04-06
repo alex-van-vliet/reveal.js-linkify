@@ -2,6 +2,8 @@
 
 A Reveal.js plugin to automatically create links to online compilers.
 
+[Demo](https://alex-van-vliet.github.io/reveal.js-linkify/demo.html)
+
 Linkify will add a "Run Online!" button to every supported code block automatically.
 The language can be set by adding a `<language>` or `language-<language>` class to the `code` element:
 
