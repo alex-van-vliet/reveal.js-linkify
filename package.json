@@ -2,7 +2,7 @@
   "name": "reveal.js-linkify",
   "version": "1.0.0",
   "description": "A Reveal.js plugin to automatically create links to online compilers",
-  "homepage": "https://github.com/alex-van-vliet/reveal.js-linkify",
+  "homepage": "https://alex-van-vliet.github.io/reveal.js-linkify/demo.html",
   "keywords": [
     "reveal",
     "reveal.js",
