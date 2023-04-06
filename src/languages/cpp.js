@@ -22,18 +22,9 @@ export default {
   },
 
   executors(config) {
-    return [
-      {
-        compiler: {
-          id: this.compiler,
-          libs: this.libs,
-          options: this.options,
-          filters: {
-            execute: this.execute,
-          },
-        },
-      },
-    ];
+    return this.compilers().map(compiler => ({
+      compiler,
+    }));
   },
 
   state(config, source) {
